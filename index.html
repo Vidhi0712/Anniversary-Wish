@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Anniversary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #fff0f5, #ffe6e6);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #e60073;
+      margin: 1rem 0;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      overflow: hidden;
+    }
+
+    .photo {
+      position: absolute;
+      max-width: 80vw;
+      height: auto;
+      max-height: 50vh;
+      object-fit: contain;
+      border-radius: 16px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .photo:nth-child(1) {
+      top: 5%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    .photo:nth-child(2) {
+      top: 10%;
+      right: 5%;
+      animation-delay: 2s;
+    }
+    .photo:nth-child(3) {
+      bottom: 20%;
+      left: 7%;
+      animation-delay: 4s;
+    }
+    .photo:nth-child(4) {
+      bottom: 5%;
+      right: 7%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(2deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: fall 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+
+    button {
+      margin-top: -5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 10;
+      position: relative;
+    }
+
+    button:hover {
+      background-color: #e60073;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0.9rem;
+      color: #660033;
+    }
+
+    /* MOBILE FRIENDLY CHANGES */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .photo {
+        max-width: 90vw;
+        max-height: 35vh;
+      }
+
+      button {
+        font-size: 1.2rem;
+        padding: 0.9rem 2rem;
+        margin-top: -2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖 Happy Anniversary 💖</h1>
+
+  <div class="container">
+    <img src="photo1.jpeg" class="photo" alt="Photo 1" />
+    <img src="photo2.jpeg" class="photo" alt="Photo 2" />
+    <img src="photo3.jpeg" class="photo" alt="Photo 3" />
+    <img src="photo4.jpeg" class="photo" alt="Photo 4" />
+  </div>
+
+  <!-- Floating Hearts -->
+  <div class="hearts">
+    <script>
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+        heart.style.opacity = 0.3 + Math.random() * 0.7;
+        document.querySelector('.hearts').appendChild(heart);
+      }
+    </script>
+  </div>
+
+  <!-- Background music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <button onclick="document.getElementById('bgMusic').play()">Play Music 🎵</button>
+
+  <footer>
+    Made with love just for you 💘
+  </footer>
+
+</body>
+</html>
